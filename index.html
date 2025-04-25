@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Основы событий №2</title>
+</head>
+
+<body>
+    <style>
+        .pink {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            position: absolute;
+            cursor: grab;
+            top: 0;
+            left: 0;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .yellow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+            background-color: khaki;
+            position: absolute;
+            cursor: grab;
+            top: 0;
+            left: 150px;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .blue {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            position: absolute;
+            cursor: grab;
+            top: 0;
+            left: 300px;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+    </style>
+    <div id="pink" class="pink">─‿‿─</div>
+    <div id="yellow" class="yellow">◕‿◕</div>
+    <div id="blue" class="blue">´｡• ω •｡`</div>
+
+    <script>
+        const pink = document.getElementById('pink');
+
+        pink.addEventListener('mousedown', function () {
+            pink.style.zIndex += 1;
+            document.addEventListener('mousemove', movepink);
+            document.addEventListener('mouseup', function () {
+                document.removeEventListener('mousemove', movepink);
+                pink.style.cursor = 'grab';
+            });
+        });
+        function movepink(e) {
+            pink.style.cursor = 'grabbing';
+            pink.style.left = e.clientX - 50 + 'px';
+            pink.style.top = e.clientY - 50 + 'px';
+        };
+
+        const yellow = document.getElementById('yellow');
+
+        yellow.addEventListener('mousedown', function () {
+            yellow.style.zIndex +=1;
+            document.addEventListener('mousemove', moveyellow);
+            document.addEventListener('mouseup', function () {
+                document.removeEventListener('mousemove', moveyellow);
+                yellow.style.cursor = 'grab';
+            });
+        });
+        function moveyellow(e) {
+            yellow.style.cursor = 'grabbing';
+            yellow.style.left = e.clientX - 50 + 'px';
+            yellow.style.top = e.clientY - 50 + 'px';
+        };
+
+        const blue = document.getElementById('blue');
+
+        blue.addEventListener('mousedown', function () {
+            blue.style.zIndex +=1;
+            document.addEventListener('mousemove', moveblue);
+            document.addEventListener('mouseup', function () {
+                document.removeEventListener('mousemove', moveblue);
+                yellow.style.cursor = 'grab';
+            });
+        });
+        function moveblue(e) {
+            blue.style.cursor = 'grabbing';
+            blue.style.left = e.clientX - 50 + 'px';
+            blue.style.top = e.clientY - 50 + 'px';
+        };
+    </script>
+</body>
+
+</html>
